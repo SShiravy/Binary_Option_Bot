@@ -2,11 +2,12 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from config import LOGIN_NUMBER_or_EMAIL, LOGIN_PASSWORD, PAGE_DELAY
+from crash_module import crash_and_close
 
 
 def logging(driver):
     driver.get('https://alpariforex.org/fa/login/')
-
+    print('-->> logging in')
     # filling
     login_email = driver.find_element(by=By.NAME, value='authorization_login')
     login_email.send_keys(LOGIN_NUMBER_or_EMAIL)
@@ -24,7 +25,8 @@ def logging(driver):
             EC.presence_of_element_located((By.XPATH, '/html/body/div[5]/div[2]/div/div[2]/div/div[7]/ul/li[3]/a'))
         )
     except:
-        print('Logging Failed')
-        return False
+        # crash
+        crash_and_close(driver,'log in Failed')
     else:
+        print('-|- Bot is in now')
         return True

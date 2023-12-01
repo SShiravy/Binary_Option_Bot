@@ -7,8 +7,7 @@ from BO_bot import run_bot
 if __name__ == '__main__':
     driver = Firefox()
     login_res = logging(driver)
-    if login_res:
-        run_bot(driver)
+    run_bot(driver)
 
     # driver.close()
     # driver.quit()
