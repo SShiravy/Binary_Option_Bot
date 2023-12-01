@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from crash_module import crash_and_close
+from terminate_module import crash_and_close
 from config import PAGE_DELAY, SYMBOL
 
 

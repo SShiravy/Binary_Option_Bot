@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-from crash_module import crash_and_close
+from terminate_module import crash_and_close
 from config import TIMEFRAME
 
 

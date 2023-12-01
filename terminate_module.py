@@ -5,7 +5,7 @@ from time import sleep
 def crash_and_close(driver, msg):
     print('|********** ERROR: '+msg+' **********|')
     print('------- PROGRAM TERMINATED -------')
-    sleep(3)
+    sleep(5)
     # driver.close()
     # driver.quit()
     sys.exit()

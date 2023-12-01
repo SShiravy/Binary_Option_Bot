@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from config import LOGIN_NUMBER_or_EMAIL, LOGIN_PASSWORD, PAGE_DELAY
-from crash_module import crash_and_close
+from terminate_module import crash_and_close
 
 
 def logging(driver):

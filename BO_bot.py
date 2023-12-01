@@ -20,12 +20,12 @@ def run_bot(driver: Firefox):
     time.sleep(ELEMENT_DELAY)
     driver.switch_to.frame("mainFrame")
     # wail to load main frame
-    time.sleep(3)
+    time.sleep(PAGE_DELAY)
     # choose symbol ----
     select_asset(driver)
     # choose timeframe ----
     select_timeframe(driver)
-    # confirm initial order
+    # confirm initial order ----
     buy_btn = driver.find_element(by=By.CSS_SELECTOR,
                                   value='.call-btn')
     sell_btn = driver.find_element(by=By.CSS_SELECTOR,
@@ -38,6 +38,7 @@ def run_bot(driver: Firefox):
                                       value='.primary-button')
     # put an order
     # confirm_btn.click()
-
+    # TODO: sleep time , refresh and check position is green or red
+    # TODO: handle stack of orders
     # driver.refresh()
     # Loop for further orders
