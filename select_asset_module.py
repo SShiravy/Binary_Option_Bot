@@ -2,13 +2,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from terminate_module import crash_and_close
-from config import PAGE_DELAY, SYMBOL
 
 
-def select_asset(driver):
+def select_asset(driver,config_dict):
     print('-->> selecting symbol')
+    SYMBOL = config_dict['SYMBOL']
     # check the asset btn
-    asset_btn = WebDriverWait(driver, PAGE_DELAY).until(
+    asset_btn = WebDriverWait(driver, config_dict['PAGE_DELAY']).until(
         EC.presence_of_element_located(
             (By.CSS_SELECTOR,
              '.asset-selector > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1)')))

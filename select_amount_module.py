@@ -1,5 +1,4 @@
 from selenium.webdriver.common.by import By
-from config import Dollar
 
 
 def select_amount(driver,n_click,increase):
@@ -12,4 +11,4 @@ def select_amount(driver,n_click,increase):
     for _ in range(n_click):
         amount_btn.click()
 
-    print(f'-|- put ${Dollar} in each trade')
+    print(f'-|- put {n_click+1} in each trade')

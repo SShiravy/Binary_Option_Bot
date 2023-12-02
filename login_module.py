@@ -1,19 +1,18 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from config import LOGIN_NUMBER_or_EMAIL, LOGIN_PASSWORD, PAGE_DELAY
 from terminate_module import crash_and_close
 
 
-def logging(driver):
+def logging(driver,config_dict):
     driver.get('https://alpariforex.org/fa/login/')
     print('-->> logging in')
     # filling
     login_email = driver.find_element(by=By.NAME, value='authorization_login')
-    login_email.send_keys(LOGIN_NUMBER_or_EMAIL)
+    login_email.send_keys(config_dict['LOGIN_NUMBER_or_EMAIL'])
 
     login_pass = driver.find_element(by=By.NAME, value='authorization_password')
-    login_pass.send_keys(LOGIN_PASSWORD)
+    login_pass.send_keys(config_dict['LOGIN_PASSWORD'])
 
     # click on login button
     login_btn = driver.find_element(by=By.XPATH,
@@ -21,7 +20,7 @@ def logging(driver):
     login_btn.click()
 
     try:
-        WebDriverWait(driver, PAGE_DELAY).until(
+        WebDriverWait(driver, config_dict['PAGE_DELAY']).until(
             EC.presence_of_element_located((By.XPATH, '/html/body/div[5]/div[2]/div/div[2]/div/div[7]/ul/li[3]/a'))
         )
     except:

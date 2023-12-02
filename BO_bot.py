@@ -3,33 +3,31 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import Firefox
-
 from select_amount_module import select_amount
 from select_asset_module import select_asset
-from config import PAGE_DELAY, ELEMENT_DELAY, MAX_STACK_ORDERS, ORDER_PERIOD, Dollar
 from select_timeframe_module import select_timeframe
 from platform_order_module import platform_order
 
 
-def run_bot(driver: Firefox):
+def run_bot(driver: Firefox,config_dict):
     # GO to BO page
     driver.get('https://my.alpariforex.org/fa/platforms/fix-contractstrader/')
     # wait to load page
-    WebDriverWait(driver, PAGE_DELAY).until(
+    WebDriverWait(driver, config_dict['PAGE_DELAY']).until(
         EC.presence_of_element_located(
             (By.XPATH,
              '/html/body/div/div[1]/div[3]')))
-    time.sleep(ELEMENT_DELAY)
+    time.sleep(config_dict['ELEMENT_DELAY'])
     driver.switch_to.frame("mainFrame")
     # wail to load main frame
-    time.sleep(ELEMENT_DELAY)
+    time.sleep(config_dict['ELEMENT_DELAY'])
     # choose symbol ----
-    select_asset(driver)
+    select_asset(driver,config_dict)
     # choose timeframe ----
-    wait_to_execute_order = select_timeframe(driver)
+    wait_to_execute_order = select_timeframe(driver,config_dict)
     # amount of dollar ----
-    select_amount(driver, Dollar - 1, True)
-    clicks_amount = Dollar
+    select_amount(driver, config_dict['Dollar'] - 1, True)
+    clicks_amount = config_dict['Dollar']
     # find buy and sell buttons
     buy_btn = driver.find_element(by=By.CSS_SELECTOR,
                                   value='.call-btn')
@@ -37,11 +35,11 @@ def run_bot(driver: Firefox):
                                    value='.put-btn')
     base_order, compensation_order = platform_order(driver, sell_btn, buy_btn)
     # Loop for further orders
-    stack_of_orders = MAX_STACK_ORDERS
+    stack_of_orders = config_dict['MAX_STACK_ORDERS']
     while True:
         try:
             # sleep and refresh -----
-            time.sleep(ORDER_PERIOD)
+            time.sleep(config_dict['ORDER_PERIOD'])
             stack_of_orders -= 1
             if stack_of_orders < 0:
                 # return True to refresh and back to platform

@@ -1,5 +1,4 @@
 from selenium.webdriver.common.by import By
-
 from config import Initial_Order
 from terminate_module import crash_and_close
 

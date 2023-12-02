@@ -1,10 +1,10 @@
 from selenium.webdriver.common.by import By
 from terminate_module import crash_and_close
-from config import TIMEFRAME
 
 
-def select_timeframe(driver):
+def select_timeframe(driver,config_dict):
     print('-->> selecting timeframe')
+    TIMEFRAME = config_dict['TIMEFRAME']
     # select timeframe menu
     timeframe_btn = driver.find_element(By.CSS_SELECTOR,
                         value='.time-frame-selector > div:nth-child(2) > div:nth-child(1) > div:nth-child(1)')
