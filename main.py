@@ -5,9 +5,15 @@ from login_module import logging
 from BO_bot import run_bot
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    driver = Firefox()
-    login_res = logging(driver)
-    run_bot(driver)
+    while True:
+        print('#### start script ####')
+        driver = Firefox()
+        login_res = logging(driver)
+        while True:
+            if run_bot(driver):
+                continue
+            else:
+                break
 
     # driver.close()
     # driver.quit()
