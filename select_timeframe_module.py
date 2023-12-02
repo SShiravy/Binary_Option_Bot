@@ -13,11 +13,14 @@ def select_timeframe(driver):
     # find all timeframe and select one
     all_timeframes = timeframe_menu.find_elements(By.CLASS_NAME, value='time-frame-menu__item')
     # interpret timeframe text
+    unit_to_s = 1
     if TIMEFRAME[-1] == 's':
         unit = 'ثانیه'
     elif TIMEFRAME[-1] == 'm':
+        unit_to_s = 60
         unit = 'دقیقه'
     elif TIMEFRAME[-1] == 'h':
+        unit_to_s = 3600
         unit = 'ساعت'
     else:
         # crash
@@ -32,7 +35,7 @@ def select_timeframe(driver):
             if selected_timeframe == timeframe_text:
                 print('-|- timeframe selected')
                 # END OF PROGRAM ---
-                return True
+                return int(unit_to_s*int(n))
 
             else:
                 # crash
