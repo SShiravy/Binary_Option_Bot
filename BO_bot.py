@@ -18,6 +18,7 @@ def run_bot(driver: Firefox,config_dict):
             (By.XPATH,
              '/html/body/div/div[1]/div[3]')))
     time.sleep(config_dict['ELEMENT_DELAY'])
+    print('#### script started ####')
     driver.switch_to.frame("mainFrame")
     # wail to load main frame
     time.sleep(config_dict['ELEMENT_DELAY'])

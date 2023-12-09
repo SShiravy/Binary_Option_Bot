@@ -33,13 +33,14 @@ if __name__ == '__main__':
     # read settings from config.txt
     config_dict = read_config('config.txt')
     # log in fields ----
-    LOGIN_NUMBER_or_EMAIL = input('Enter Email or Number:')
-    LOGIN_PASSWORD = input('Enter Password:')
-    config_dict['LOGIN_NUMBER_or_EMAIL'] = LOGIN_NUMBER_or_EMAIL
-    config_dict['LOGIN_PASSWORD'] = LOGIN_PASSWORD
+    # LOGIN_NUMBER_or_EMAIL = input('Enter Email or Number:')
+    # LOGIN_PASSWORD = input('Enter Password:')
+    # config_dict['LOGIN_NUMBER_or_EMAIL'] = LOGIN_NUMBER_or_EMAIL
+    # config_dict['LOGIN_PASSWORD'] = LOGIN_PASSWORD
+    print('## opening Firefox browser')
     driver = Firefox()
-    print('#### script started ####')
     login_res = logging(driver,config_dict)
+    print('## going to fix-contractstrader page')
     while True:
         if run_bot(driver,config_dict):
             continue
