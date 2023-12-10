@@ -3,9 +3,9 @@ from config import Initial_Order
 from terminate_module import crash_and_close
 
 
-def platform_order(driver, sell_btn, buy_btn):
+def platform_order(driver, sell_btn, buy_btn,config_dict):
     print('-->> working on platform orders')
-    if Initial_Order == 'sell':
+    if config_dict['INITIAL_ORDER'] == 'sell':
         initial_order = sell_btn
         other_order = buy_btn
 

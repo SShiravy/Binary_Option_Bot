@@ -19,12 +19,16 @@ def read_config(path):
             'TIMEFRAME': str(values[3]),
             'Dollar': int(values[4]),
             'ORDER_PERIOD': int(values[5]),
-            'MAX_STACK_ORDERS': int(values[6])
+            'MAX_STACK_ORDERS': int(values[6]),
+            'INITIAL_ORDER': str(values[7]),
+            'LOSE_ORDER': str(values[8]),
+            'TURBO_ORDER_PERIOD': int(values[9]),
+            'TURBO_LOSE_Dollar': int(values[10])
         }
         print('-|- reading configs complete')
         return config_dict
     except:
-        crash_and_close(driver, f'wrong config.txt')
+        crash_and_close(0, f'wrong config.txt')
         return False
 
 
