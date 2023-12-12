@@ -23,7 +23,7 @@ def read_config(path):
             'INITIAL_ORDER': str(values[7]),
             'LOSE_ORDER': str(values[8]),
             'TURBO_ORDER_PERIOD': int(values[9]),
-            'TURBO_LOSE_Dollar': int(values[10])
+            'TURBO_LOSE_Dollar': float(values[10])
         }
         print('-|- reading configs complete')
         return config_dict
