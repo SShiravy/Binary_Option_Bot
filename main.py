@@ -44,9 +44,5 @@ if __name__ == '__main__':
     print('## opening Firefox browser')
     driver = Firefox()
     login_res = logging(driver,config_dict)
-    print('## going to fix-contractstrader page')
-    while True:
-        if run_bot(driver,config_dict):
-            continue
-        else:
-            break
+    # start bot
+    run_bot(driver,config_dict)

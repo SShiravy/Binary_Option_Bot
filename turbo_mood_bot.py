@@ -39,11 +39,18 @@ def turbo_mood(driver: Firefox, config_dict):
     lose_click = compensation_order if config_dict['INITIAL_ORDER'] != config_dict['LOSE_ORDER'] else base_order
     # Loop for further orders
     wait_to_execute_order = config_dict['TURBO_ORDER_PERIOD']
+    stack_of_orders = config_dict['MAX_STACK_ORDERS']
     while True:
         try:
             # sleep to execute initial order
             time.sleep(wait_to_execute_order)
             new_fund = int(fund.text[1:])
+            stack_of_orders -= 1
+            if stack_of_orders < 0:
+                # return True to refresh and back to platform
+                print('----- return to platform -----')
+                return True
+
             # place new order ----
             if pre_fund > new_fund:
                 print(',,, failed -> new Lose order')
