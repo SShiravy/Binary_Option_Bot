@@ -64,6 +64,7 @@ def turbo_mood(driver: Firefox, config_dict):
                 # position_mood == 'success'
                 print('--- success -> new Win order')
                 pre_fund = new_fund
+                stack_of_orders = config_dict['MAX_STACK_ORDERS']
                 clicks_amount = int(order_amount.get_property('value')) - config_dict['Dollar']
                 select_amount(driver, clicks_amount, False)
                 win_click()
