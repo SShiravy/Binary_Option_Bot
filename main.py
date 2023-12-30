@@ -12,6 +12,8 @@ def read_config(path):
         with open(path, 'r') as file:
             lines = file.readlines()
             values = [line.split("'")[1] for line in lines]
+        lot_multipliers_list = [float(lot) for lot in values[12][1:-1].split(',')]
+        time_multipliers_list = [float(lot) for lot in values[13][1:-1].split(',')]
         config_dict = {
             'PAGE_DELAY': int(values[0]),
             'ELEMENT_DELAY': int(values[1]),
@@ -23,7 +25,12 @@ def read_config(path):
             'INITIAL_ORDER': str(values[7]),
             'LOSE_ORDER': str(values[8]),
             'TURBO_ORDER_PERIOD': int(values[9]),
-            'TURBO_LOSE_Dollar': float(values[10])
+            'TURBO_LOSE_Dollar': float(values[10]),
+            '36INPUT_MOOD': True if values[11] == 'ON' else False,
+            'Lot_multipliers': lot_multipliers_list,
+            'Time_multipliers': time_multipliers_list,
+            'Max_Lot': int(values[14]),
+            'Max_Time': int(values[15])
         }
         print('-|- reading configs complete')
         return config_dict

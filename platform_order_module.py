@@ -1,5 +1,4 @@
 from selenium.webdriver.common.by import By
-from config import Initial_Order
 from terminate_module import crash_and_close
 
 
@@ -14,13 +13,11 @@ def platform_order(driver, sell_btn, buy_btn,config_dict):
         other_order = sell_btn
 
     def base_order():
-        try:
-            initial_order.click()
-            confirm_btn = driver.find_element(by=By.CSS_SELECTOR,
-                                              value='.primary-button')
-            confirm_btn.click()
-        except:
-            crash_and_close(driver,"Can not place order")
+        initial_order.click()
+        confirm_btn = driver.find_element(by=By.CSS_SELECTOR,
+                                          value='.primary-button')
+        confirm_btn.click()
+        #crash_and_close(driver,"Can not place order")
 
     def compensation_order():
         try:
