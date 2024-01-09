@@ -26,12 +26,12 @@ def turbo_mood(driver: Firefox, config_dict):
     # find amount of Fund
     fund = driver.find_element(by=By.CSS_SELECTOR,
                                value='.account-panel__info-block > span:nth-child(3) > span:nth-child(1)')
-    pre_fund = int(fund.text[1:])
+    pre_fund = int(fund.text[1:].replace(',',''))
     # find amount of Order
     order_amount = driver.find_element(by=By.CSS_SELECTOR, value= '.number-input__field')
     # multi input mood ------------------------------------------
     if config_dict['36INPUT_MOOD']:
-        multi_input_mood(driver,config_dict,fund)
+        multi_input_mood(driver,config_dict)
     else:
         # find buy and sell buttons
         buy_btn = driver.find_element(by=By.CSS_SELECTOR,

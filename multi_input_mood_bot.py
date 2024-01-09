@@ -4,32 +4,39 @@ from selenium.webdriver import Firefox
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
-
 from platform_order_module import platform_order
 from select_amount_module import select_amount
 
 
-def multi_input_mood(driver: Firefox, config_dict, fund):
+def multi_input_mood(driver: Firefox, config_dict):
     print('|| 36 input mood started')
+    # find amount of Fund
+    fund = driver.find_element(by=By.CSS_SELECTOR,
+                               value='.account-panel__info-block > span:nth-child(3) > span:nth-child(1)')
     # find buy and sell buttons
     buy_btn = driver.find_element(by=By.CSS_SELECTOR,
                                   value='.call-btn')
     sell_btn = driver.find_element(by=By.CSS_SELECTOR,
                                    value='.put-btn')
+    pre_fund = int(fund.text[1:])
+    print('pre fund', pre_fund)
     # base order
     base_order, compensation_order = platform_order(driver, sell_btn, buy_btn, config_dict)
     wait_to_execute_order = config_dict['TURBO_ORDER_PERIOD']
     # put initial order until lose
     while True:
-        print('--- new base order')
-        pre_fund = int(fund.text[1:])
         # sleep to execute order
         time.sleep(wait_to_execute_order)
         new_fund = int(fund.text[1:])
+        print('new fund',new_fund)
         # check for lose
         if new_fund < pre_fund:
             break
+        pre_fund = int(fund.text[1:])
+        print('pre fund',pre_fund)
         base_order()
+        print('--- new base order')
+
     # after lose, put opposite then initial order repeatedly
     # Start 36 order --------------
     print(',,, lose -> start 36 orders')
